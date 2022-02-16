@@ -22,9 +22,12 @@ const getUniList = async () => {
 
     const html = await page.content();
     const $ = cheerio.load(html);
-    logger.log($('.uni-link').toArray().map((name) => $(name).text()));
+    const list = $('.uni-link').toArray().map((name) => $(name).text());
+    logger.log(list);
 
     await browser.close();
+
+    return list;
   } catch (error) {
     logger.error(error);
   }

@@ -1,7 +1,7 @@
 {
   "name": "topuniversities-scraper",
   "version": "1.0.0",
-  "description": "scrapes text",
+  "description": "scrapes the names of top 100 universities in the world",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
