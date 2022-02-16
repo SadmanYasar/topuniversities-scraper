@@ -1,11 +1,10 @@
-/* eslint-disable no-console */
 /* eslint-disable no-undef */
-
 require('dotenv').config();
 const puppeteer = require('puppeteer');
 const cheerio = require('cheerio');
+const logger = require('./utils/logger');
 
-const url = 'https://www.topuniversities.com/university-rankings/world-university-rankings/2022';
+const url = process.env.URL;
 
 const getUniList = async () => {
   try {
@@ -23,12 +22,14 @@ const getUniList = async () => {
 
     const html = await page.content();
     const $ = cheerio.load(html);
-    console.log($('.uni-link').toArray().map((name) => $(name).text()));
+    logger.log($('.uni-link').toArray().map((name) => $(name).text()));
 
     await browser.close();
   } catch (error) {
-    console.log(error);
+    logger.error(error);
   }
+
+  return null;
 };
 
 module.exports = getUniList;
